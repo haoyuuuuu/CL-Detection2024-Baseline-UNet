@@ -6,8 +6,6 @@ NOTE：The solution is built solely on the PyTorch framework without any additio
 ## Pipeline of This Solution 
 The baseline solution provided in this repository is based on a paper published in the 2016 MICCAI conference: Regressing Heatmaps for Multiple Landmark Localization Using CNNs. The overall process of the designed approach is illustrated in the following diagram:
 
-avatar
-
 In the implementation provided in this repository, a UNet model is used as the backbone network for heatmap regression. The model takes input images of size 512×512 and outputs heatmaps with 38 channels. The predicted coordinates of the landmarks are obtained by taking the coordinates of the maximum value in each heatmap.
 
 Reproducing the Experiment Results
