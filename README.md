@@ -6,32 +6,34 @@ NOTE：The solution is built solely on the PyTorch framework without any additio
 ## Pipeline of This Solution 
 The baseline solution provided in this repository is based on a paper published in the 2016 MICCAI conference: Regressing Heatmaps for Multiple Landmark Localization Using CNNs. The overall process of the designed approach is illustrated in the following diagram:
 
-In the implementation provided in this repository, a UNet model is used as the backbone network for heatmap regression. The model takes input images of size 512×512 and outputs heatmaps with 38 channels. The predicted coordinates of the landmarks are obtained by taking the coordinates of the maximum value in each heatmap.
+In the implementation provided in this repository, a UNet model is used as the backbone network for heatmap regression. The model takes input images of size 512×512 and outputs heatmaps with 53 channels. The predicted coordinates of the landmarks are obtained by taking the average coordinates of the maximum values in each heatmap.
 
-Reproducing the Experiment Results
+## Reproducing the Experiment Results
 Here is a step-by-step tutorial for you to follow. Alternatively, you can download the pre-trained weight files and run step3_test_and_visualize.py to reproduce our results. Please remember to copy the downloaded weights to the step5_docker_and_upload folder for model inference in Docker.
 
-Weight files download link: [Google Drive] [Baidu Drive]
+Weight files download link: 
 
-How to run this code on the CL-Detection 2023 dataset or your own custom dataset?
-This code can easily be executed for the landmark detection task. Here, we have divided the entire process into five steps to facilitate the reproduction of results based on the CL-Detection 2023 dataset or to execute the entire process on your custom dataset.
+How to run this code on the CL-Detection 2024 dataset or your own custom dataset?
+This code can easily be executed for the landmark detection task. Here, we have divided the entire process into five steps to facilitate the reproduction of results based on the CL-Detection 2024 dataset or to execute the entire process on your custom dataset.
 
-Step0: Environment Setup.
-Step1: Run the script step1_preprocessing.py to perform the preprocessing
-Step2: Run the script step2_train_and_valid.py to train and validate the deep learning model.
-Step3: Run the script step3_test_and_visualize.py to test the model on test images.
-Step4: Run the script step4_predict_expected_output.py to predict the expected_output.json results.
-Step5: Run the script step5_docker_and_upload to package the deep learning model.
-You should download the CL-Detection 2023 dataset in advance, following the detailed instructions provided on the challenge's official website.
+- Step0: Environment Setup.
+- Step1: Run the script step1_dataset_split.py to split the public training set into three sets.
+- Step2: Run the script step2_train_and_valid.py to train and validate the deep learning model.
+- Step3: Run the script step3_test_and_visualize.py to test the model on test images.
+- Step4: Run the script step4_predict_and_save.py to obtain the prediction results in csv format.
+- Step5: Run the script step5_docker_and_upload to package the deep learning model.
 
-Step0: Environment Setup
+**You should download the CL-Detection 2024 dataset in advance, following the detailed instructions provided on the challenge's official website.**
+
+### Step0: Environment Setup
 We have tested our code in following environment：
 
-Ubuntu == 18.04
-cuda == 11.8
-torch =＝1.12.0
-torchvision == 0.13.0
-The repository code does not have any specific library dependencies. As long as you have torch and torchvision installed on your computer, you should be able to import them and install other dependencies. If you encounter any problems, please feel free to raise them in the Issues. I will patiently respond and work towards resolving any issues you encounter.
+- Ubuntu == 18.04
+- cuda == 11.3
+- torch =＝1.11.0
+- torchvision == 0.12.0
+
+The repository code does not have any specific library dependencies. As long as you have torch and torchvision installed on your computer, you should be able to import them and install other dependencies. If you encounter any problems, please feel free to raise them in the Issues.
 
 Step1: Data Preprocessing
 In Step 1, you should run the script step1_preprocessing.py in Python to perform the processing. For the CL-Detection 2023 Challenge dataset, the organizers have considered the costs of storage and distribution, and all images have been zero-padded to a uniform size of (2400, 2880, 3). As a result, there are some irrelevant regions that need to be removed, and the main purpose of this preprocessing script is to address this issue.
