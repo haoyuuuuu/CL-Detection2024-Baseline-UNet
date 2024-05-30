@@ -1,0 +1,6 @@
+evalutils==0.4.2
+numpy==1.22.0
+pandas==2.0.2
+scikit_image==0.19.2
+SimpleITK==2.2.1
+torch==1.11.0
