@@ -20,7 +20,7 @@ from evalutils import DetectionAlgorithm
 from evalutils.validators import UniquePathIndicesValidator, UniqueImagesValidator
 from model import load_model
 
-class Cldetection_alg_2023(DetectionAlgorithm):
+class Cldetection_alg_2024(DetectionAlgorithm):
 
     def __init__(self):
         # Please do not modify the initialization function of the parent class.
@@ -180,15 +180,15 @@ class Cldetection_alg_2023(DetectionAlgorithm):
 
 
 if __name__ == "__main__":
-    algorithm = Cldetection_alg_2023()
+    algorithm = Cldetection_alg_2024()
     algorithm.process()
 
     # Question: How can we call the process() function if it's not implemented here?
-    # Answer: Because Cldetection_alg_2023 inherits from DetectionAlgorithm, it inherits the parent class's functions.
+    # Answer: Because Cldetection_alg_2024 inherits from DetectionAlgorithm, it inherits the parent class's functions.
     #         So, when called, it automatically triggers the relevant functions.
 
     # 问：这里没有实现 process() 函数，怎么可以进行调用呢？
-    # 答：因为这是 Cldetection_alg_2023 继承了 DetectionAlgorithm，父类函数，子类也就有了，然后进行执行，背后会自动调用相关函数
+    # 答：因为这是 Cldetection_alg_2024 继承了 DetectionAlgorithm，父类函数，子类也就有了，然后进行执行，背后会自动调用相关函数
 
     # Question: What operations are performed behind the scenes when calling the process() function?
     # Answer: By referring to the source code, we can see the process() function, which is defined as follows:
