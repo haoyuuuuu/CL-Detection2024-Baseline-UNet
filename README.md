@@ -79,9 +79,30 @@ The train.csv file is used for model training, and the valid.csv file is used fo
 **RUN:** 
 - Modify the following input parameters and then run the script directly.
 ```python
+# Data parameters | 数据参数
+# Path Settings | 路径设置
+parser.add_argument('--train_csv_path', type=str, default='/data/XHY/CL-Detection2024/dataset/Training Set/train.csv')
+parser.add_argument('--valid_csv_path', type=str, default='/data/XHY/CL-Detection2024/dataset/Training Set/valid.csv')
 
+# Model training hyperparameters | 模型训练超参数
+parser.add_argument('--cuda_id', type=int, default=0)
 
-Step3: Testing and Visualization
+parser.add_argument('--batch_size', type=int, default=8)
+
+# Result & save | 结果和保存路径
+parser.add_argument('--save_model_dir', type=str, default='/data/XHY/CL-Detection2024/model/baseline UNet')
+```
+- Set the input parameters in the terminal and run it.
+```python
+python step2_train_and_valid.py \
+--train_csv_path='/data/XHY/CL-Detection2024/dataset/Training Set/train.csv' \
+--valid_csv_path='/data/XHY/CL-Detection2024/dataset/Training Set/valid.csv' \
+--cuda_id=0 \
+--batch_size=8 \
+--save_model_dir='/data/XHY/CL-Detection2024/model/baseline UNet'
+```
+
+### Step3: Test and Visualize
 In Step 3, you should run the script step3_test_and_visualize.py to independently test the trained models and evaluate their performance. The script will assess the performance of all 38 landmarks on the entire set of images, which is the statistical approach used in the challenge. To execute this script, you also have two options for operation:
 
 In the script step3_test_and_visualize.py, modify the following parameters, then run the script and click on RUN:
