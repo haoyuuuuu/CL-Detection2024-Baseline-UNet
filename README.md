@@ -52,7 +52,22 @@ This repository follows a train-validate-test approach, where the model is train
 
 **RUN:** 
 - Modify the following input parameters and then run the script directly.
-
+```python
+# Path settings | 路径设置
+parser.add_argument('--images_dir_path', type=str, default='/data/XHY/CL-Detection2024/dataset/Training Set/images',
+                    help='Path to the images directory')
+parser.add_argument('--labels_path', type=str, default='/data/XHY/CL-Detection2024/dataset/Training Set/labels.csv',
+                    help='Path to the labels CSV file')
+parser.add_argument('--split_dir_path', type=str, default='/data/XHY/CL-Detection2024/dataset/Training Set',
+                    help='Path to the output split directory')
+```
+- Set the input parameters in the terminal and run it.
+```python
+python step1_dataset_split.py \
+--images_dir_path='/data/XHY/CL-Detection2024/dataset/Training Set/images' \
+--labels_path='/data/XHY/CL-Detection2024/dataset/Training Set/labels.csv' \
+--split_dir_path='/data/XHY/CL-Detection2024/dataset/Training Set'
+```
 
 **NOTE:** The image preprocessing operations and dataset splitting mentioned above are not the only options. You are free to perform data processing and dataset splitting according to your preferences, or even expand it to a cross-validation mode for model training and validation. 
 
