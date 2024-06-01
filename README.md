@@ -71,34 +71,15 @@ python step1_dataset_split.py \
 
 **NOTE:** The image preprocessing operations and dataset splitting mentioned above are not the only options. You are free to perform data processing and dataset splitting according to your preferences, or even expand it to a cross-validation mode for model training and validation. 
 
-### Step2: Training and Validation
+### Step2: Train and Valid
 In Step 2, you can execute the script step2_train_and_valid.py to train models for predicting different landmarks.
 
-The train.csv file is used for model training, and the valid.csv file is used for validation. The training process utilizes an early stopping mechanism. The training stops when either the model's loss on the validation set does not decrease for a consecutive number of epochs (epoch_patience), or the maximum number of iterations (train_max_epoch) is reached.
+The train.csv file is used for model training, and the valid.csv file is used for validation. The training process utilizes an early stopping mechanism. The training stops when either the model's loss on the validation set does not decrease for a consecutive number of epochs (epoch_patience), or the maximum number of iterations (train_max_epoch) is reached. After executing this script and completing the training of the model, you will obtain a deep learning model capable of predicting heatmaps for 53 landmarks locations simultaneously.
 
-Specifically, you can train models for predicting different landmarks using the following two approaches:
+**RUN:** 
+- Modify the following input parameters and then run the script directly.
+```python
 
-modify (set) following parameters in the script step2_train_and_valid.py and run the script.
-""" just set your param as the default value """
-# data parameters
-parser.add_argument('--train_csv_path', type=str, default='/data/zhangHY/CL-Detection2023/train.csv')
-parser.add_argument('--valid_csv_path', type=str, default='/data/zhangHY/CL-Detection2023/valid.csv')
-
-# model training hyperparameters
-parser.add_argument('--cuda_id', type=int, default=0)
-parser.add_argument('--batch_size', type=int, default=4)
-parser.add_argument('--batch_size_valid', type=int, default=2)
-
-# result & save
-parser.add_argument('--save_model_dir', type=str, default='/data/zhangHY/CL-Detection2023/checkpoints')
-use the following command at the terminal to transmit parameters and run the script.
-python step2_train_and_valid.py \
---train_csv_path='/data/zhangHY/CL-Detection2023/train.csv' \
---valid_csv_file='/data/zhangHY/CL-Detection2023/valid.csv' \
---batch_size=4 \
---cuda_id=0 \
---save_model_dir='/data/zhangHY/CL-Detection2023/checkpoints' \
-After executing this script and completing the training of the model, you will obtain a deep learning model capable of predicting heatmaps for 38 landmarks locations simultaneously.
 
 Step3: Testing and Visualization
 In Step 3, you should run the script step3_test_and_visualize.py to independently test the trained models and evaluate their performance. The script will assess the performance of all 38 landmarks on the entire set of images, which is the statistical approach used in the challenge. To execute this script, you also have two options for operation:
