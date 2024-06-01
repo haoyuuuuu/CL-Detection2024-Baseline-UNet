@@ -50,6 +50,10 @@ The generated CSV files are organized in the following format: {image file name}
 
 This repository follows a train-validate-test approach, where the model is trained on the training set, further trained and hyperparameters are selected on the validation set, and then tested on the test set to obtain the final model's performance.
 
+**RUN:** 
+- Modify the following input parameters and then run the script directly.
+
+
 **NOTE:** The image preprocessing operations and dataset splitting mentioned above are not the only options. You are free to perform data processing and dataset splitting according to your preferences, or even expand it to a cross-validation mode for model training and validation. 
 
 ### Step2: Training and Validation
