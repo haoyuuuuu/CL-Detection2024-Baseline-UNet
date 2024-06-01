@@ -35,27 +35,24 @@ We have tested our code in following environment：
 
 The repository code does not have any specific library dependencies. As long as you have torch and torchvision installed on your computer, you should be able to import them and install other dependencies. If you encounter any problems, please feel free to raise them in the Issues.
 
-Step1: Data Preprocessing
-In Step 1, you should run the script step1_preprocessing.py in Python to perform the processing. For the CL-Detection 2023 Challenge dataset, the organizers have considered the costs of storage and distribution, and all images have been zero-padded to a uniform size of (2400, 2880, 3). As a result, there are some irrelevant regions that need to be removed, and the main purpose of this preprocessing script is to address this issue.
+### Step1: Dataset Split
+In Step 1, you should run the script step1_dataset_split.py in Python to perform the processing. This script handles the splitting of the dataset into distinct subsets: training, validation, and test sets. After running the code, you will obtain three CSV files:
 
-After running the code, you will obtain a folder and three CSV files:
+- Three CSV files: The script generates train.csv, valid.csv, and test.csv files by default. These files divide the dataset into 300, 50, and 46 images, respectively, for training, testing, and validation purposes.
 
-A folder: This folder contains the extracted train_stack.mha file. It includes 400 preprocessed images where the zero-padded irrelevant regions have been removed. Each image is saved separately, and the default image format is BMP.
+The generated CSV files are organized in the following format: {image file name},{true physical distance of the pixel},{landmark X coordinate},{landmark Y coordinate}.
 
-Three CSV files: The script generates train.csv, valid.csv, and test.csv files by default. These files divide the dataset into 300, 50, and 50 images, respectively, for training, testing, and validation purposes.
+| image file | spacing(mm) | p1x | p1y | p2x | p2y | ... | p53x | p53y |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| 001.bmp | 0.1 | 835 | 996 | 1473 | 1029 | ... | 1712 | 1044 |
+| 003.bmp | 0.1 | 761 | 1105 | 1335 | 923 | ... | 1577 | 861 |
+| ┋ | ┋ | ┋ | ┋ | ┋ | ┋ | ┋ | ┋ | ┋ |
 
-The generated CSV files are organized in the following format: {image file path},{true physical distance of the pixel},{landmark X coordinate},{landmark Y coordinate}.
-
-file	scale	p1x	p1y	p2x	p2y	...	...	p38y
-.../processed/images/104.bmp	0.1	798	1106	1449	1030	...	...	1765
-.../processed/images/99.bmp	0.1	896	1062	1483	1681	...	...	1828
-.../processed/images/278.bmp	0.125	1208	901	1681	785	...	...	1413
-┋	┋	┋	┋	┋	┋	┋	┋	┋
 This repository follows a train-validate-test approach, where the model is trained on the training set, further trained and hyperparameters are selected on the validation set, and then tested on the test set to obtain the final model's performance.
 
-NOTE: The image preprocessing operations and dataset splitting mentioned above are not the only options. You are free to perform data processing and dataset splitting according to your preferences, or even expand it to a cross-validation mode for model training and validation.
+**NOTE:** The image preprocessing operations and dataset splitting mentioned above are not the only options. You are free to perform data processing and dataset splitting according to your preferences, or even expand it to a cross-validation mode for model training and validation. 
 
-Step2: Training and Validation
+### Step2: Training and Validation
 In Step 2, you can execute the script step2_train_and_valid.py to train models for predicting different landmarks.
 
 The train.csv file is used for model training, and the valid.csv file is used for validation. The training process utilizes an early stopping mechanism. The training stops when either the model's loss on the validation set does not decrease for a consecutive number of epochs (epoch_patience), or the maximum number of iterations (train_max_epoch) is reached.
