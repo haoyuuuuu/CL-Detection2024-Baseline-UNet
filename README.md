@@ -120,7 +120,7 @@ The following image shows the visualization of some test images from the test.cs
 
 <img src="https://github.com/haoyuuuuu/CL-Detection2024-Baseline-UNet/blob/main/docs/visualization.png?raw=true" width="1000" height="250">
 
-## Step4: Predict and Save
+### Step4: Predict and Save
 Test the model's predictions on the provided validation set images. After running the script, obtain the model's output results file named predictions.csv locally.
 
 **RUN:** 
@@ -137,7 +137,7 @@ python step4_predict_and_save.py \
 --save_csv_path='/data/XHY/CL-Detection2024/dataset/Validation Set/predictions.csv' \
 ```
 
-## Step5: Docker Upload
+### Step5: Docker Upload
 First, make sure that Docker and NVIDIA Container Toolkit are installed on your computing platform as they are essential for the algorithm packaging. The former ensures that you can perform the packaging, while the latter enables GPU utilization within Docker. Be sure to confirm that your system has been properly installed and configured.
 
 Next, make sure to modify the requirements.txt file to include the necessary dependencies for your code project. This ensures that all the required libraries for the prediction process are included so that the prediction code can be executed correctly and produce the desired results.
