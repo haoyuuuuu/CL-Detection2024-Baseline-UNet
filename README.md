@@ -9,7 +9,7 @@ The baseline solution provided in this repository is based on a paper published 
 In the implementation provided in this repository, a UNet model is used as the backbone network for heatmap regression. The model takes input images of size 512×512 and outputs heatmaps with 53 channels. The predicted coordinates of the landmarks are obtained by taking the average coordinates of the maximum values in each heatmap.
 
 ## Reproducing the Experiment Results
-Here is a step-by-step tutorial for you to follow. Alternatively, you can download the [pre-trained weight file](https://pan.baidu.com/s/13J39x9WM8smW8UyCp4GL8w?pwd=4jpz) and run step3_test_and_visualize.py to reproduce our results. Please remember to copy the downloaded weights to the step5_docker_and_upload folder for model inference in Docker.
+Here is a step-by-step tutorial for you to follow. Alternatively, you can download the [pre-trained weight file](https://pan.baidu.com/s/13J39x9WM8smW8UyCp4GL8w?pwd=4jpz) and run step3_test_and_visualize.py to reproduce our results. Please remember to copy the downloaded weights to the step5_docker_upload folder for model inference in Docker.
  
 How to run this code on the CL-Detection 2024 dataset or your own custom dataset?
 This code can easily be executed for the landmark detection task. Here, we have divided the entire process into five steps to facilitate the reproduction of results based on the CL-Detection 2024 dataset or to execute the entire process on your custom dataset.
@@ -19,7 +19,7 @@ This code can easily be executed for the landmark detection task. Here, we have 
 - Step2: Run the script step2_train_and_valid.py to train and validate the deep learning model.
 - Step3: Run the script step3_test_and_visualize.py to test the model on test images.
 - Step4: Run the script step4_predict_and_save.py to obtain the prediction results in csv format.
-- Step5: Run the script step5_docker_and_upload to package the deep learning model.
+- Step5: Run the script step5_docker_upload to package the deep learning model.
 
 **You should download the CL-Detection 2024 dataset in advance, following the detailed instructions provided on the challenge's official website.**
 
