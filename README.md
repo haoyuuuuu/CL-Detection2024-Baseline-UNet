@@ -119,6 +119,7 @@ python step3_test_and_visualize.py \
 ```
 
 The following image shows the visualization of some test images from the test.csv file. The green dots represent the ground truth, i.e., the annotated landmarks by the doctors, while the red dots represent the model's predicted results. The yellow lines indicate the distances between the model's predictions and the doctor's annotations:
+<img src="https://github.com/haoyuuuuu/CL-Detection2024-Website/blob/main/Pictures/dataset.png?raw=true" width="300" height="350">
 
 ## Step4: Predict and Save
 Test the model's predictions on the provided validation set images. After running the script, obtain the model's output results file named predictions.csv locally.
