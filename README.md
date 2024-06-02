@@ -1,7 +1,7 @@
-# CL-Detection2024 MICCAI Challenge Baseline UNet Model
-This repository provides a solution based on UNet heatmap prediction for the CL-Detection 2024 Challenge. Additionally, the repository includes a tutorial on packaging the solution as a Docker image, ensuring that participants can upload their algorithm models for validation on the leaderboard.
+# CL-Detection 2024 MICCAI Challenge Baseline UNet Model
+This repository provides a solution based on UNet heatmap prediction for the [CL-Detection 2024 Challenge](https://www.codabench.org/competitions/edit/2576). Additionally, the repository includes a tutorial on packaging the solution as a Docker image, ensuring that participants can upload their algorithm models for validation on the leaderboard.
 
-NOTE：The solution is built solely on the PyTorch framework without any additional framework dependencies (e.g., MMdetection). It contains detailed code comments for easy understanding and usage 🍚🍚🍚.
+**NOTE:** The solution is built solely on the PyTorch framework without any additional framework dependencies (e.g., MMdetection). It contains detailed code comments for easy understanding and usage 🍚🍚🍚.
 
 ## Pipeline of This Solution 
 The baseline solution provided in this repository is based on a paper published in the 2016 MICCAI conference: Regressing Heatmaps for Multiple Landmark Localization Using CNNs. The overall process of the designed approach is illustrated in the following diagram:
