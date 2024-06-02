@@ -4,7 +4,7 @@ This repository provides a solution based on UNet heatmap prediction for the [CL
 **NOTE:** The solution is built solely on the PyTorch framework without any additional framework dependencies (e.g., MMdetection). It contains detailed code comments for easy understanding and usage 🍚🍚🍚.
 
 ## Pipeline of This Solution 
-The baseline solution provided in this repository is based on a paper published in the 2016 MICCAI conference: Regressing Heatmaps for Multiple Landmark Localization Using CNNs. The overall process of the designed approach is illustrated in the following diagram:
+The baseline solution provided in this repository is based on a paper published in the 2016 MICCAI conference: [Regressing Heatmaps for Multiple Landmark Localization Using CNNs](https://link.springer.com/chapter/10.1007/978-3-319-46723-8_27). The overall process of the designed approach is illustrated in the following diagram:
 
 In the implementation provided in this repository, a UNet model is used as the backbone network for heatmap regression. The model takes input images of size 512×512 and outputs heatmaps with 53 channels. The predicted coordinates of the landmarks are obtained by taking the average coordinates of the maximum values in each heatmap.
 
