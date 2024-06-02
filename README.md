@@ -103,34 +103,32 @@ python step2_train_and_valid.py \
 ```
 
 ### Step3: Test and Visualize
-In Step 3, you should run the script step3_test_and_visualize.py to independently test the trained models and evaluate their performance. The script will assess the performance of all 38 landmarks on the entire set of images, which is the statistical approach used in the challenge. To execute this script, you also have two options for operation:
+In Step 3, you should run the script step3_test_and_visualize.py to independently test the trained models and evaluate their performance. The script will assess the performance of all 53 landmarks on the entire set of images, which is the statistical approach used in the challenge. After running the script, you can observe the performance of the model on the independent test set in terms of the Mean Radial Error (MRE) and 2mm Success Detection Rate (SDR) metrics. The approximate values are MRE = 3.86 mm and 2mm SDR = 67.23%. Since the script does not fix the random seed, the results may have slight fluctuations within a small range, which could cause slight deviations from the experimental results provided by the authors.
 
-In the script step3_test_and_visualize.py, modify the following parameters, then run the script and click on RUN:
-""" just set your param as the default value """
-# data parameters | 测试数据文件
-parser.add_argument('--test_csv_path', type=str, default='/data/zhangHY/CL-Detection2023/test.csv')
+**RUN:** 
+- Modify the following input parameters and then run the script directly.
+```python
+# Data parameters | 数据文件路径
+parser.add_argument('--test_csv_path', type=str, default='/data/XHY/CL-Detection2024/dataset/Training Set/test.csv')
 
-# model load dir path | 存放模型的文件夹路径
-parser.add_argument('--load_weight_path', type=str, default='/data/zhangHY/CL-Detection2023/checkpoints/best_model.pt')
+# Model load path | 模型路径
+parser.add_argument('--load_weight_path', type=str, default='/data/XHY/CL-Detection2024/model/baseline UNet/best_model.pt')
 
-# model test parameters
-parser.add_argument('--cuda_id', type=int, default=0)
-
-# result & save
+# Result & save | 结果和保存
 parser.add_argument('--save_image', type=bool, default=True)
-parser.add_argument('--save_image_dir', type=str, default='/data/zhangHY/CL-Detection2023/visualize')
-To run the script with the desired parameters in the terminal, you can use the following command:
+parser.add_argument('--save_image_dir', type=str, default='/data/XHY/CL-Detection2024/dataset/Training Set/visualize')
+```
+- Set the input parameters in the terminal and run it.
+```python
 python step3_test_and_visualize.py \
---test_csv_path='/data/zhangHY/CL-Detection2023/test.csv' \
---load_weight_path='/data/zhangHY/CL-Detection2023/checkpoints/best_model.pt' \
---cuda_id=0 \
---save_image=True \
---save_model_dir='/data/zhangHY/CL-Detection2023/visualize' \
-After running the script, you can observe the performance of the model on the independent test set in terms of the Mean Radial Error (MRE) and 2mm Success Detection Rate (SDR) metrics. The approximate values are MRE = 3.323 mm and 2mm SDR = 65.421%. Since the script does not fix the random seed, the results may have slight fluctuations within a small range, which could cause slight deviations from the experimental results provided by the authors.
+--test_csv_path='/data/XHY/CL-Detection2024/dataset/Training Set/test.csv' \
+--load_weight_path='/data/XHY/CL-Detection2024/model/baseline UNet/best_model.pt' \
+--save_image_dir='/data/XHY/CL-Detection2024/dataset/Training Set/visualize'
+```
 
-The following image shows the visualization of some test images from the test.csv file. The red dots represent the ground truth, i.e., the annotated landmarks by the doctors, while the green dots represent the model's predicted results. The yellow lines indicate the distances between the model's predictions and the doctor's annotations:
+The following image shows the visualization of some test images from the test.csv file. The green dots represent the ground truth, i.e., the annotated landmarks by the doctors, while the red dots represent the model's predicted results. The yellow lines indicate the distances between the model's predictions and the doctor's annotations:
+<img src="https://github.com/haoyuuuuu/CL-Detection2024-Website/blob/main/Pictures/dataset.png?raw=true" width="300" height="350">
 
-avatar
 
 Step4: Example Testing
 To test the model's predictions on the provided stack1.mha test file and obtain the model's output results expected_output.json locally, you have two options for operation:
