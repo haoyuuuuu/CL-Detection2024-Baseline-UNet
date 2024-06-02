@@ -125,32 +125,25 @@ python step3_test_and_visualize.py \
 ```
 
 The following image shows the visualization of some test images from the test.csv file. The green dots represent the ground truth, i.e., the annotated landmarks by the doctors, while the red dots represent the model's predicted results. The yellow lines indicate the distances between the model's predictions and the doctor's annotations:
-<img src="https://github.com/haoyuuuuu/CL-Detection2024-Website/blob/main/Pictures/dataset.png?raw=true" width="300" height="350">
 
+## Step4: Predict and Save
+Test the model's predictions on the provided validation set images. After running the script, obtain the model's output results file named predictions.csv locally.
 
-Step4: Example Testing
-To test the model's predictions on the provided stack1.mha test file and obtain the model's output results expected_output.json locally, you have two options for operation:
+**RUN:** 
+- Modify the following input parameters and then run the script directly.
+```python
+# Path Settings | 路径设置
+parser.add_argument('--images_dir_path', type=str, default='/data/XHY/CL-Detection2024/dataset/Validation Set/images')
+parser.add_argument('--save_csv_path', type=str, default='/data/XHY/CL-Detection2024/dataset/Validation Set/predictions.csv')
+```
+- Set the input parameters in the terminal and run it.
+```python
+python step4_predict_and_save.py \
+--images_dir_path='/data/XHY/CL-Detection2024/dataset/Validation Set/images' \
+--save_csv_path='/data/XHY/CL-Detection2024/dataset/Validation Set/predictions.csv' \
+```
 
-Please modify the following parameters in the script step4_predict_expected_output.py and then run the script:
-""" just set your param as the default value """
-# data parameters | 测试数据文件
-parser.add_argument('--load_mha_path', type=str, default='/home/medai06/zhangHY/CL-Detection2023/step5_docker_and_upload/test/stack1.mha')
-parser.add_argument('--save_json_path', type=str, default='/home/medai06/zhangHY/CL-Detection2023/step5_docker_and_upload/test/expected_output.json')
-
-# model load dir path
-parser.add_argument('--load_weight_path', type=str, default='/data/zhangHY/CL-Detection2023/checkpoints/best_model.pt')
-
-# model test parameters
-parser.add_argument('--cuda_id', type=int, default=0)
-To execute the script and pass the parameters through the command line interface:
-python step4_predict_expected_output.py \
---load_mha_path='/home/medai06/zhangHY/CL-Detection2023/step5_docker_and_upload/test/stack1.mha' \
---save_json_path='/home/medai06/zhangHY/CL-Detection2023/step5_docker_and_upload/test/expected_output.json' \
---load_weight_path='/data/zhangHY/CL-Detection2023/checkpoints/best_model.pt'
---cuda_id=0 \
-NOTE: Since stack1.mha only contains two test images, the script will run quickly, and you will obtain the expected output file expected_output.json. The expected_output.json will be different for different model algorithms. If you want to test your own model algorithm, you must rerun the script to obtain the expected output specific to your model.
-
-Step5: Packaging and Upload
+## Step5: Docker Upload
 First, make sure that Docker and NVIDIA Container Toolkit are installed on your computing platform as they are essential for the algorithm packaging. The former ensures that you can perform the packaging, while the latter enables GPU utilization within Docker. Be sure to confirm that your system has been properly installed and configured.
 
 Next, make sure to modify the requirements.txt file to include the necessary dependencies for your code project. This ensures that all the required libraries for the prediction process are included so that the prediction code can be executed correctly and produce the desired results.
@@ -158,25 +151,18 @@ Next, make sure to modify the requirements.txt file to include the necessary dep
 Then, implement your inference testing process in the predict() function within the process.py file, and modify the save() function based on the return value of predict() function. It's important to note that there are no strict requirements for the return value of the predict() function, so you can structure it according to your programming preferences.
 
 After that, execute the build.sh script to troubleshoot any errors. If everything goes smoothly, you may see the following output:
+```python
+=> exporting to image                                                                                                                                        0.2s
+=> => exporting layers                                                                                                                                       0.2s
+=> => writing image sha256:1b360361c1ea8a004f2e6c506e30fe0cd3d9be1806755283342e3f468f5a4d62                                                                  0.0s
+=> => naming to docker.io/library/cldetection_alg_2024                                                                                                       0.0s
+```
+Finally, execute the test.sh script to verify if the output results from Docker match the locally predicted results. If they match, proceed to execute the export.sh script to export the CLdetection_Alg_2024.tar.gz file that can be uploaded to the challenge platform.
 
-[+] Building 298.7s (5/16)                                                                                       
- => [internal] load build definition from Dockerfile                                                        0.0s 
- => => transferring dockerfile: 4.07kB                                                                      0.0s 
- => [internal] load .dockerignore                                                                           0.0s
- => => transferring context: 61B                                                                            0.0s
- => [internal] load metadata for docker.io/pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel                      3.2s
- => CANCELED [ 1/12] FROM docker.io/pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel@sha256:ed167cae955fa654c  295.5s
- => => resolve docker.io/pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel@sha256:ed167cae955fa654cefc3663fc0c7b  0.0s
-...
-...
- => => naming to docker.io/library/cldetection_alg_2023                                                     0.0s
-Finally, execute the test.sh script to verify if the output results from Docker match the locally predicted results. If they match, proceed to execute the export.sh script to export the CLdetection_Alg_2023.tar.gz file that can be uploaded to the challenge platform.
-
-Tips for Participants
+## Tips for Participants
 This repository only provides a baseline model and a complete workflow for training, testing, and packaging for participants. The performance of the model is not very high, and the organizers may suggest the following directions for optimization as a reference:
-
-Design preprocessing and data augmentation strategies that are more targeted. This repository only involves simple image scaling to a size of (512, 512) and horizontal flipping for augmentation.
-Replace the backbone network with more powerful models such as the HRNet, Hourglass models, or Transformer models with self-attention mechanisms.
-Incorporate powerful attention modules. It is common in research to enhance model generalization and performance using attention mechanisms.
-Choosing a suitable loss function can make it easier for the deep learning model to learn and converge more quickly, leading to higher performance.
-Finally, if you encounter any challenges or difficulties while participating in the CL-Detection 2023 challenge, encounter any errors while running the code in this repository, or have any suggestions for improving the baseline model, please feel free to raise an issue. I will be actively available to provide assistance and support.
+- Design preprocessing and data augmentation strategies that are more targeted. This repository only involves simple image scaling to a size of (512, 512) and horizontal flipping for augmentation.
+- Replace the backbone network with more powerful models such as the HRNet, Hourglass models, or Transformer models with self-attention mechanisms.
+- Incorporate powerful attention modules. It is common in research to enhance model generalization and performance using attention mechanisms.
+- Choosing a suitable loss function can make it easier for the deep learning model to learn and converge more quickly, leading to higher performance.
+Finally, if you encounter any challenges or difficulties while participating in the CL-Detection 2024 challenge, encounter any errors while running the code in this repository, or have any suggestions for improving the baseline model, please feel free to raise an issue. I will be actively available to provide assistance and support.
