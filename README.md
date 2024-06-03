@@ -1,7 +1,10 @@
 # CL-Detection 2024 MICCAI Challenge Baseline UNet Model
 This repository provides a solution based on UNet heatmap prediction for the [CL-Detection 2024 Challenge](https://www.codabench.org/competitions/2576/). Additionally, the repository includes a tutorial on packaging the solution as a Docker image, ensuring that participants can upload their algorithm models for validation on the leaderboard.
 
-**NOTE:** The solution is built solely on the PyTorch framework without any additional framework dependencies (e.g., MMdetection). It contains detailed code comments for easy understanding and usage 🍚🍚🍚.
+**NOTE:** The solution is built solely on the PyTorch framework without any additional framework dependencies (e.g., MMdetection). It contains detailed code comments for easy understanding and usage 🍚🍚🍚. Additionally, participants can refer to the top-ranked methods from CL-Detection 2023 challenge: 
+
+Second Place: [Revisiting Cephalometric Landmark Detection from the View of Human Pose Estimation with Lightweight Super-Resolution Head](https://arxiv.org/abs/2309.17143) 
+Code: <https://github.com/5k5000/CLdetection2023>
 
 ## Pipeline of This Solution 
 The baseline solution provided in this repository is based on a paper published in the 2016 MICCAI conference: [Regressing Heatmaps for Multiple Landmark Localization Using CNNs](https://link.springer.com/chapter/10.1007/978-3-319-46723-8_27). In the implementation provided in this repository, a UNet model is used as the backbone network for heatmap regression. The model takes input images of size 512×512 and outputs heatmaps with 53 channels. The predicted coordinates of the landmarks are obtained by taking the average coordinates of the maximum values in each heatmap.
